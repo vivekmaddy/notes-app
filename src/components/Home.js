@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import '../assets/css/style.css';
 
 class Home extends Component {
+    
     render() {
 
         return (

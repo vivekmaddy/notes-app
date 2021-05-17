@@ -5,11 +5,40 @@ import { useHistory } from "react-router-dom";
 
 class Posts extends Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            starred_icon: "ri-star-line",
+            starred_icon_bgColor: "text-secondary",
+        };
+
+    }
+
     CreateNewPost() {
         window.location.href = "/new";
     }
 
+    AddToStared = () => {
+        var icon = this.state.starred_icon
+        var color = this.state.starred_icon_bgColor
+
+        if (icon == "ri-star-fill") {
+            icon = "ri-star-line"
+            color = "text-secondary"
+        }
+        else {
+            icon = "ri-star-fill"
+            color = "text-warning"
+        }
+
+        this.setState({ starred_icon: icon, starred_icon_bgColor: color })
+    }
+
+
     render() {
+
+
         return (
             <React.Fragment>
                 <section id="contact" className="contact section-show">
@@ -22,20 +51,20 @@ class Posts extends Component {
                         <div className="row my-2">
                             <div className="col-md-12 d-flex align-items-stretch">
                                 <div className="info-box">
-                                    <input onClick={this.CreateNewPost} style={{ backgroundColor: '#444444', borderColor: '#444444', cursor: 'pointer' }} type="text" className="form-control form-control-lg" placeholder="Create a new post"></input>
+                                    <input onClick={this.CreateNewPost} style={{ backgroundColor: '#444444', borderColor: '#444444', cursor: 'pointer' }} type="text" className="form-control form-control-md" placeholder="Create a new post"></input>
                                 </div>
                             </div>
                         </div>
-                        <div className="row mt-2">
+                        <div className="row mt-4">
                             <div className="col-md-12 d-flex align-items-stretch">
-                                <div className="info-box">
+                                <div className="info-box" style={{ borderRadius: '10px' }}>
                                     <div className="row">
                                         <div className="col-11">
                                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/768px-Python-logo-notext.svg.png" width="2%" className="bx" />
                                             <span style={{ fontColor: '#5a5a5a', marginLeft: '39px', fontSize: '15px' }}>Posted by <a href="" style={{ color: '#5a5a5a !important' }}>Vivek</a> on 02-03-2021 10:10AM</span>
                                         </div>
                                         <div className="col-1" align="right">
-                                            <i className="ri-star-line" style={{ fontSize: '23px' }}></i>
+                                            <a onClick={this.AddToStared} className={this.state.starred_icon_bgColor}><i className={this.state.starred_icon} style={{ fontSize: '23px' }}></i></a>
                                         </div>
 
                                     </div>
